@@ -1,0 +1,25 @@
+{
+  "name": "projeto-02",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "knex": "node --no-warnings --loader tsx ./node_modules/knex/bin/cli.js",
+    "lint": "eslint src --ext .ts --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@rocketseat/eslint-config": "^1.3.0",
+    "eslint": "^8.44.0",
+    "fastify": "^4.19.2",
+    "knex": "^2.5.0",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "tsx": "3.12.7",
+    "typescript": "5.1.6"
+  }
+}
