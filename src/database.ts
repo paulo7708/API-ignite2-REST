@@ -1,9 +1,9 @@
 import { knex as setupKnex, Knex } from 'knex'
 
 export const config: Knex.Config = {
-  client: 'sqlite3', // or 'better-sqlite3'
+  client: 'sqlite', // or 'better-sqlite3'
   connection: {
-    filename: ':memory:',
+    filename: './db/app.db',
   },
   useNullAsDefault: true,
   migrations: {
