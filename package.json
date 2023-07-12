@@ -18,7 +18,8 @@
     "fastify": "^4.19.2",
     "httpie": "^1.1.2",
     "knex": "^2.5.0",
-    "sqlite3": "^5.1.6"
+    "sqlite3": "^5.1.6",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@types/node": "^20.4.1",
