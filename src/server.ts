@@ -4,9 +4,9 @@ import { transactionsRoutes } from './routes/transactions'
 
 const app = Fastify()
 
-app.register(transactionsRoutes, {
-  //prefix: 'transactions'
-})
+
+//plugins do fastify precisa ser uma funcção async
+app.register(transactionsRoutes, { prefix: 'transactions' })
 
 app
   .listen({
