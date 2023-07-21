@@ -29,7 +29,7 @@ export async function transactionsRoutes(app: FastifyInstance) {
     return { summary }
   })
 
-  app.post('/', async (request, response) => {
+  app.post('/', async (request, reply) => {
 
     //criando o Schema para validar os dados e adicionar intelisense com zod
     const createTransactionBodySchema = z.object({
@@ -41,13 +41,26 @@ export async function transactionsRoutes(app: FastifyInstance) {
     //declarando variaveis e verificando com parse se as informaçoes estao vindo na request body
     const { title, amount, type } = createTransactionBodySchema.parse(request.body)
 
+    //criando os cookies
+    let sessionId = request.cookies.sessionId
+
+    if(!sessionId) {
+      sessionId = randomUUID()
+
+      reply.cookie('sessionId', sessionId, {
+        path: '/',
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+      })
+    }
+
     //em rostas de crição n retornamos nada, insert=insere no BD, retornou só 201
     await knex('transactions').insert({
       id: randomUUID(),
       title,
       amount: type === 'credit' ? amount : amount * -1,
+      session_id: sessionId,
     })
 
-    return response.status(201).send()
+    return reply.status(201).send()
   })
 }
