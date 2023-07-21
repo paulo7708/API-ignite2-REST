@@ -22,6 +22,13 @@ export async function transactionsRoutes(app: FastifyInstance) {
     return { transactions }
   })
 
+  //somando os valores de amount
+  app.get('/summary', async () => {
+    const summary = await knex('transactions').sum('amount', { as: 'amount'}).first()
+
+    return { summary }
+  })
+
   app.post('/', async (request, response) => {
 
     //criando o Schema para validar os dados e adicionar intelisense com zod
